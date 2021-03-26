@@ -12,8 +12,18 @@
         </div>
         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.text|linebreaksbr }}</p>
-        <span class="glyphicon glyphicon-comment"></span> <a href="{% url 'post_detail' pk=post.pk %}">
-        {{ post.approved_comments.count }}</a>
+        {% with post.approved_comments.count as comments_approved %}
+            {% if comments_approved == 2 %}
+                {{ comments_approved }} komentarze
+            {% else %}
+                {{ comments_approved }} komentarz{{ comments_approved|pluralize:"y" }}
+            {% endif %}
+        {% endwith %}
+
+
+<!--        liczba komentarzy wraz z ikonką dostarczaną wraz z bootstrapem -->
+<!--        <span class="glyphicon glyphicon-comment"></span> <a href="{% url 'post_detail' pk=post.pk %}">-->
+<!--        {{ post.approved_comments.count }}</a>-->
 
     </div>
     {% endfor %}
