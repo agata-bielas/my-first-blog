@@ -12,6 +12,10 @@
         </div>
         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.text|linebreaksbr }}</p>
+<!-- 1 - komentarz -->
+<!-- 0, 5, 6, ..., [10 - 21],[25 - 31], [35 - 41], itd - komentarzy !!! Y -->
+<!-- 2, 3, 4, 22, 23, 24, 32, 33, 34, itd - komentarze !!! E -->
+<!-- jak to rozgryźć-->
         {% with post.approved_comments.count as comments_approved %}
             {% if comments_approved == 2 %}
                 {{ comments_approved }} komentarze
